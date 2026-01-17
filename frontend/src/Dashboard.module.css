@@ -372,3 +372,19 @@
   height: 300px; /* Mandatory */
   width: 100%;
 }
+.chartContainerLarge {
+  width: 100%;
+  height: 400px; /* Must have an explicit height */
+  position: relative;
+}
+
+.chartContainerMedium, .chartContainerSquare {
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
+
+.chartContainerSmall {
+  width: 100%;
+  height: 180px;
+}
