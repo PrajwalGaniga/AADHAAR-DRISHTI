@@ -34,6 +34,10 @@ MODEL_FILES = {
 df = pd.read_csv(DATA_PATH) if os.path.exists(DATA_PATH) else None
 loaded_models = {}
 
+# Ensure the keys are set correctly when loading
+loaded_models["XGBoost"] = joblib.load(MODEL_FILES["XGBoost"])
+loaded_models["RandomForest"] = joblib.load(MODEL_FILES["RandomForest"])
+
 # Polishing Logic: This re-saves models in your local version to stop warnings
 for name, path in MODEL_FILES.items():
     if os.path.exists(path):

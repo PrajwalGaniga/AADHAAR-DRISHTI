@@ -82,8 +82,12 @@ function App() {
   }, [rawData, pivotX, pivotY]);
 
   const chartData = useMemo(() => {
-    if (!trendData.length || !predictionDetails) return trendData;
+  // 🛡️ GUARD: If data or predictions are missing, don't crash, just return trendData
+  if (!trendData.length || !predictionDetails || !predictionDetails.xgboost || !predictionDetails.random_forest) {
+    return trendData;
+  }
 
+  try {
     const lastActual = trendData[trendData.length - 1];
     const xgbVal = parseFloat(predictionDetails.xgboost.val) * 1000000;
     const rfVal = parseFloat(predictionDetails.random_forest.val) * 1000000;
@@ -103,7 +107,11 @@ function App() {
     );
 
     return [...updatedHistory, forecastNode];
-  }, [trendData, predictionDetails]);
+  } catch (e) {
+    console.error("Forecast calculation error:", e);
+    return trendData;
+  }
+}, [trendData, predictionDetails]);
 
   const demographicSplit = useMemo(() => {
     if (!rawData.length) return [];

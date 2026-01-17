@@ -363,3 +363,12 @@
   /* Footer Stack */
   .footer { flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
 }
+.chartContainerLarge {
+  height: 400px; /* Mandatory */
+  width: 100%;
+  position: relative;
+}
+.chartContainerMedium {
+  height: 300px; /* Mandatory */
+  width: 100%;
+}
