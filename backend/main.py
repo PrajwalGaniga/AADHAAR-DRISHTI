@@ -102,6 +102,16 @@ async def upload_csv(file: UploadFile = File(...)):
         return {"status": "error", "message": str(e)}
     
 import numpy as np
+# --- main.py UPDATE ---
+
+@app.get("/")
+def read_root():
+    return {
+        "status": "AADHAAR DRISHTI API ONLINE",
+        "version": "v4.1.0-GOV",
+        "documentation": "/docs",
+        "systems": ["XGBoost", "RandomForest", "Gemini-1.5-Flash"]
+    }
 
 @app.get("/api/governance-indices")
 def get_indices():
