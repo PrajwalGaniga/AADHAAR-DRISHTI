@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const init = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/summary');
+        const res = await axios.get('https://aadhaar-drishti.onrender.com/api/summary');
         setRawData(res.data || []);
         setStatus("SYSTEM ONLINE");
       } catch (err) {
@@ -45,8 +45,8 @@ function App() {
     const fetchAnalytics = async () => {
       try {
         const [resRadar, resPred] = await Promise.all([
-          axios.get('http://localhost:8000/api/governance-indices'),
-          axios.get('http://localhost:8000/api/model-comparison')
+          axios.get('https://aadhaar-drishti.onrender.com/api/governance-indices'),
+          axios.get('https://aadhaar-drishti.onrender.com/api/model-comparison')
         ]);
         setGovernanceData(resRadar.data);
         setPredictionDetails(resPred.data);
@@ -127,7 +127,7 @@ function App() {
     const currentPred = predictionDetails?.[modelKey];
 
     try {
-      const res = await axios.post('http://localhost:8000/api/ai-interpret', {
+      const res = await axios.post('https://aadhaar-drishti.onrender.com/api/ai-interpret', {
         model: activeModel,
         volume: currentPred?.val || "N/A",
         confidence: `${(currentPred?.confidence * 100).toFixed(1)}%`,
@@ -147,7 +147,7 @@ function App() {
     formData.append('file', file);
     setUploadStatus("Ingesting...");
     try {
-      await axios.post('http://localhost:8000/api/upload-data', formData);
+      await axios.post('https://aadhaar-drishti.onrender.com/api/upload-data', formData);
       setUploadStatus("Ingestion Complete");
       setTimeout(() => window.location.reload(), 1500);
     } catch (err) {
