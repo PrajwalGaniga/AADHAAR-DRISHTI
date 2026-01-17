@@ -13,7 +13,8 @@ app = FastAPI(title="Aadhaar Drishti API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://aadhaar-drishti.netlify.app"], # Your specific frontend
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
